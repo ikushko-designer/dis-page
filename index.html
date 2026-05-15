@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Портфолио дизайнера</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background:#dcdcdc;
+    padding:40px;
+    color:#222;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+.frame{
+    background:#efefef;
+    border-radius:28px;
+    padding:35px;
+    margin-bottom:40px;
+}
+
+.title{
+    font-size:42px;
+    margin-bottom:25px;
+}
+
+.tabs{
+    display:flex;
+    gap:15px;
+    margin-bottom:30px;
+}
+
+.tab-btn{
+    padding:14px 26px;
+    border:none;
+    border-radius:16px;
+    background:#d6d6d6;
+    cursor:pointer;
+    font-size:16px;
+    transition:0.2s;
+}
+
+.tab-btn.active{
+    background:#222;
+    color:white;
+}
+
+.divider{
+    height:2px;
+    background:#d2d2d2;
+    margin:40px 0;
+}
+
+.section-header{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:18px;
+    flex-wrap:wrap;
+}
+
+.number{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:#222;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+.section-title{
+    font-size:28px;
+    font-weight:bold;
+}
+
+.price{
+    background:white;
+    padding:10px 18px;
+    border-radius:14px;
+    font-weight:bold;
+}
+
+.section-subtitle{
+    color:#666;
+    margin-bottom:25px;
+}
+
+/* ===== СЛАЙДЕР ===== */
+
+.gallery{
+    width:100%;
+}
+
+.main-slider{
+    position:relative;
+    height:550px;
+    border-radius:22px;
+    overflow:hidden;
+    background:#ccc;
+}
+
+.main-slider img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.arrow{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:52px;
+    height:52px;
+    border:none;
+    border-radius:50%;
+    background:rgba(0,0,0,0.55);
+    color:white;
+    font-size:24px;
+    cursor:pointer;
+    z-index:10;
+}
+
+.arrow-left{
+    left:18px;
+}
+
+.arrow-right{
+    right:18px;
+}
+
+.thumbnails{
+    margin-top:18px;
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+}
+
+.thumb{
+    width:110px;
+    height:80px;
+    border-radius:12px;
+    overflow:hidden;
+    cursor:pointer;
+    border:3px solid transparent;
+    flex-shrink:0;
+}
+
+.thumb.active{
+    border-color:#222;
+}
+
+.thumb img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* ===== ДОКУМЕНТАЦИЯ ===== */
+
+.docs-list{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.doc-item{
+    background:white;
+    border-radius:18px;
+    padding:18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.doc-left{
+    display:flex;
+    align-items:center;
+    gap:16px;
+}
+
+.arrow-icon{
+    font-size:24px;
+}
+
+.doc-preview{
+    width:120px;
+    height:80px;
+    border-radius:12px;
+    overflow:hidden;
+    cursor:pointer;
+}
+
+.doc-preview img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.85);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+}
+
+.modal img{
+    max-width:90%;
+    max-height:90%;
+    border-radius:20px;
+}
+
+.modal.active{
+    display:flex;
+}
+
+/* ===== ДОП УСЛУГИ ===== */
+
+.service-item{
+    background:white;
+    border-radius:18px;
+    padding:18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:16px;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.service-left{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.mini-price{
+    background:#ececec;
+    padding:10px 16px;
+    border-radius:12px;
+    font-weight:bold;
+}
+
+.file-btn{
+    padding:12px 18px;
+    border:none;
+    border-radius:12px;
+    background:#222;
+    color:white;
+    cursor:pointer;
+}
+
+/* ===== ОТЗЫВЫ ===== */
+
+.review{
+    background:white;
+    border-radius:18px;
+    padding:25px;
+    margin-top:20px;
+}
+
+.review-top{
+    display:flex;
+    gap:14px;
+    align-items:center;
+    margin-bottom:14px;
+    flex-wrap:wrap;
+}
+
+.stars{
+    color:orange;
+}
+
+.review-date{
+    color:#777;
+}
+
+/* ===== БЛОК ДИЗАЙНЕРА ===== */
+
+.designer {
+  background: #efefef;
+  border-radius: 28px;
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.designer-photo {
+  width: 180px;
+  aspect-ratio: 3/4;
+  border-radius: 18px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.designer-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.header-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.city {
+  display: inline-block;
+  background: purple;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  width: fit-content;
+}
+
+.tags {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.tags span {
+  display: inline-block;
+  background: #00c27a;
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  width: fit-content;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- ===== БЛОК ДИЗАЙНЕРА ===== -->
+
+<div class="designer">
+
+    <div class="header">
+
+        <div class="designer-photo">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400">
+        </div>
+
+        <div class="header-info">
+
+            <h2>
+                Полина 0001758
+            </h2>
+
+            <span class="city">УФА</span>
+
+            <div class="tags">
+                <span>Может выехать на объект</span>
+                <span>Составляет ТЗ онлайн</span>
+                <span>Дом</span>
+                <span>Квартира</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="frame">
+
+<h1 class="title">Портфолио</h1>
+
+<div class="tabs">
+    <button class="tab-btn active" data-type="house">Дом</button>
+    <button class="tab-btn" data-type="flat">Квартира</button>
+    <button class="tab-btn" data-type="club">Коммерция</button>
+</div>
+
+<!-- ================== БЛОК 1 ================== -->
+
+<div class="divider"></div>
+
+<div class="section-header">
+    <div class="number">1</div>
+    <div class="section-title">3D-визуализации</div>
+    <div class="price">700 ₽/м²</div>
+</div>
+
+<div class="section-subtitle">
+    Фотореалистичные картинки вашего интерьера
+</div>
+
+<div class="gallery">
+
+    <div class="main-slider">
+        <button class="arrow arrow-left">❮</button>
+
+        <img id="mainImage" src="" alt="">
+
+        <button class="arrow arrow-right">❯</button>
+    </div>
+
+    <div class="thumbnails" id="thumbs"></div>
+
+</div>
+
+<!-- ================== БЛОК 2 ================== -->
+
+<div class="divider"></div>
+
+<div class="section-header">
+    <div class="number">2</div>
+    <div class="section-title">Техническая документация</div>
+    <div class="price">700 ₽/м²</div>
+</div>
+
+<div class="section-subtitle">
+    чертежи для ваших строителей
+</div>
+
+<div class="docs-list" id="docsList"></div>
+
+<!-- ================== БЛОК 3 ================== -->
+
+<div class="divider"></div>
+
+<div class="section-header">
+    <div class="number">3</div>
+    <div class="section-title">2D-коллажи</div>
+    <div class="price">1500 ₽/ракурс</div>
+</div>
+
+<div class="section-subtitle">
+    Бюджетная альтернатива визуализациям
+</div>
+
+<div class="gallery">
+
+    <div class="main-slider">
+        <button class="arrow arrow-left collage-left">❮</button>
+
+        <img id="collageMain" src="" alt="">
+
+        <button class="arrow arrow-right collage-right">❯</button>
+    </div>
+
+    <div class="thumbnails" id="collageThumbs"></div>
+
+</div>
+
+<!-- ================== БЛОК 4 ================== -->
+
+<div class="divider"></div>
+
+<div class="section-header">
+    <div class="number">4</div>
+    <div class="section-title">Доп.услуги</div>
+</div>
+
+<div class="service-item">
+    <div class="service-left">
+        ➜
+        <div>Обмерный план</div>
+    </div>
+
+    <div class="mini-price">100₽/м²</div>
+
+    <div class="doc-preview">
+        <img src="https://picsum.photos/400/300?random=101">
+    </div>
+</div>
+
+<div class="service-item">
+    <div class="service-left">
+        ➜
+        <div>Таблица комплектации</div>
+    </div>
+
+    <div class="mini-price">100₽/м²</div>
+
+    <button class="file-btn">
+        📄 Скачать Excel
+    </button>
+</div>
+
+<div class="service-item">
+    <div class="service-left">
+        ➜
+        <div>Авторский надзор</div>
+    </div>
+
+    <div class="mini-price">5000₽/выезд</div>
+</div>
+
+</div>
+
+<!-- ================== ОТЗЫВЫ ================== -->
+
+<div class="frame">
+
+<h2 class="title">Отзывы</h2>
+
+<div class="review">
+    <div class="review-top">
+        <strong>Арина</strong>
+        <div class="stars">★★★★★</div>
+        <div class="review-date">13.05.2026</div>
+    </div>
+
+    <div>
+        Все прошло просто замечательно. План сделали быстрее изначальных сроков, общение со всеми было легким и приятным. Если бы эта компания еще занималась ремонтом, то никто бы не жаловался, что ремонт это сложно😁😁🫱🏼‍🫲🏾🫶🏾👍🏻
+    </div>
+</div>
+
+<div class="review">
+    <div class="review-top">
+        <strong>Максим</strong>
+        <div class="stars">★★★★☆</div>
+        <div class="review-date">20.02.2020</div>
+    </div>
+
+    <div>
+        Спасибо девочкам , все сделали быстро и так как хотела видеть кухню .
+        10000% советую
+    </div>
+</div>
+
+</div>
+
+</div>
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+    <img id="modalImage" src="">
+</div>
+
+<script>
+
+const imageSets = {
+
+    house: {
+        visuals: Array.from({length:10}, (_,i)=>
+            `https://picsum.photos/1200/700?random=${i+1}`
+        ),
+
+        collages: Array.from({length:10}, (_,i)=>
+            `https://picsum.photos/1200/700?random=${i+100}`
+        ),
+
+        docs: [
+            "План демонтажа",
+            "План перегородок",
+            "План помещений",
+            "План радиаторов"
+        ]
+    },
+
+    flat: {
+        visuals: Array.from({length:10}, (_,i)=>
+            `https://picsum.photos/1200/700?random=${i+20}`
+        ),
+
+        collages: Array.from({length:10}, (_,i)=>
+            `https://picsum.photos/1200/700?random=${i+200}`
+        ),
+
+        docs: [
+            "План демонтажа",
+            "План перегородок",
+            "План помещений",
+            "План радиаторов"
+        ]
+    },
+
+    club: {
+        visuals: Array.from({length:10}, (_,i)=>
+            `https://picsum.photos/1200/700?random=${i+50}`
+        ),
+
+        collages: Array.from({length:10}, (_,i)=>
+            `https://picsum.photos/1200/700?random=${i+300}`
+        ),
+
+        docs: [
+            "План демонтажа",
+            "План перегородок",
+            "План помещений",
+            "План радиаторов"
+        ]
+    }
+
+};
+
+let currentType = "house";
+
+let currentVisual = 0;
+let currentCollage = 0;
+
+const mainImage = document.getElementById("mainImage");
+const thumbs = document.getElementById("thumbs");
+
+const collageMain = document.getElementById("collageMain");
+const collageThumbs = document.getElementById("collageThumbs");
+
+function renderVisuals(){
+
+    const images = imageSets[currentType].visuals;
+
+    mainImage.src = images[currentVisual];
+
+    thumbs.innerHTML = "";
+
+    images.forEach((img, index)=>{
+
+        const div = document.createElement("div");
+        div.className = "thumb";
+
+        if(index === currentVisual){
+            div.classList.add("active");
+        }
+
+        div.innerHTML = `<img src="${img}">`;
+
+        div.onclick = ()=>{
+            currentVisual = index;
+            renderVisuals();
+        };
+
+        thumbs.appendChild(div);
+
+    });
+
+}
+
+function renderCollages(){
+
+    const images = imageSets[currentType].collages;
+
+    collageMain.src = images[currentCollage];
+
+    collageThumbs.innerHTML = "";
+
+    images.forEach((img, index)=>{
+
+        const div = document.createElement("div");
+        div.className = "thumb";
+
+        if(index === currentCollage){
+            div.classList.add("active");
+        }
+
+        div.innerHTML = `<img src="${img}">`;
+
+        div.onclick = ()=>{
+            currentCollage = index;
+            renderCollages();
+        };
+
+        collageThumbs.appendChild(div);
+
+    });
+
+}
+
+document.querySelector(".arrow-left").onclick = ()=>{
+    const images = imageSets[currentType].visuals;
+
+    currentVisual--;
+
+    if(currentVisual < 0){
+        currentVisual = images.length - 1;
+    }
+
+    renderVisuals();
+};
+
+document.querySelector(".arrow-right").onclick = ()=>{
+    const images = imageSets[currentType].visuals;
+
+    currentVisual++;
+
+    if(currentVisual >= images.length){
+        currentVisual = 0;
+    }
+
+    renderVisuals();
+};
+
+document.querySelector(".collage-left").onclick = ()=>{
+    const images = imageSets[currentType].collages;
+
+    currentCollage--;
+
+    if(currentCollage < 0){
+        currentCollage = images.length - 1;
+    }
+
+    renderCollages();
+};
+
+document.querySelector(".collage-right").onclick = ()=>{
+    const images = imageSets[currentType].collages;
+
+    currentCollage++;
+
+    if(currentCollage >= images.length){
+        currentCollage = 0;
+    }
+
+    renderCollages();
+};
+
+function renderDocs(){
+
+    const docsList = document.getElementById("docsList");
+
+    docsList.innerHTML = "";
+
+    imageSets[currentType].docs.forEach((doc, index)=>{
+
+        const image =
+        `https://picsum.photos/500/350?random=${index+400}`;
+
+        const item = document.createElement("div");
+
+        item.className = "doc-item";
+
+        item.innerHTML = `
+            <div class="doc-left">
+                <div class="arrow-icon">➜</div>
+                <div>${doc}</div>
+            </div>
+
+            <div class="doc-preview">
+                <img src="${image}">
+            </div>
+        `;
+
+        item.querySelector("img").onclick = ()=>{
+            openModal(image);
+        };
+
+        docsList.appendChild(item);
+
+    });
+
+}
+
+document.querySelectorAll(".tab-btn").forEach(btn=>{
+
+    btn.onclick = ()=>{
+
+        document.querySelectorAll(".tab-btn")
+            .forEach(b=>b.classList.remove("active"));
+
+        btn.classList.add("active");
+
+        currentType = btn.dataset.type;
+
+        currentVisual = 0;
+        currentCollage = 0;
+
+        renderVisuals();
+        renderCollages();
+        renderDocs();
+
+    };
+
+});
+
+const modal = document.getElementById("modal");
+const modalImage = document.getElementById("modalImage");
+
+function openModal(src){
+
+    modal.classList.add("active");
+    modalImage.src = src;
+
+}
+
+modal.onclick = ()=>{
+    modal.classList.remove("active");
+};
+
+renderVisuals();
+renderCollages();
+renderDocs();
+
+</script>
+
+</body>
+</html>
