@@ -3,823 +3,1318 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Портфолио дизайнера</title>
+<title>Калькулятор проекта</title>
 
 <style>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
 body{
-    font-family: Arial, sans-serif;
-    background:#dcdcdc;
-    padding:40px;
-    color:#222;
+  font-family:Arial,sans-serif;
+  background:#f2f2f2;
+  padding:20px;
+  margin:0;
 }
 
-.container{
-    max-width:1200px;
-    margin:auto;
+.card{
+  background:#e9e9e9;
+  border-radius:20px;
+  padding:20px;
+  margin-bottom:20px;
 }
 
-.frame{
-    background:#efefef;
-    border-radius:28px;
-    padding:35px;
-    margin-bottom:40px;
+h2,h3,h4{
+  margin-bottom:10px;
 }
 
-.title{
-    font-size:42px;
-    margin-bottom:25px;
+.input,
+select{
+  padding:8px 12px;
+  border-radius:12px;
+  border:none;
+  background:#d6d6d6;
 }
 
-.tabs{
-    display:flex;
-    gap:15px;
-    margin-bottom:30px;
+.row{
+  display:flex;
+  gap:10px;
+  margin-bottom:10px;
+  flex-wrap:wrap;
+  align-items:center;
 }
 
-.tab-btn{
-    padding:14px 26px;
-    border:none;
-    border-radius:16px;
-    background:#d6d6d6;
-    cursor:pointer;
-    font-size:16px;
-    transition:0.2s;
+.service{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:8px;
+  flex-wrap:wrap;
 }
 
-.tab-btn.active{
-    background:#222;
-    color:white;
+.unit{
+  font-size:12px;
+  color:#666;
 }
 
-.divider{
-    height:2px;
-    background:#d2d2d2;
-    margin:40px 0;
+.btn{
+  background:#ff4d4d;
+  border:none;
+  padding:8px 20px;
+  border-radius:12px;
+  color:white;
+  cursor:pointer;
+  margin-top:10px;
+  margin-right:10px;
 }
 
-.section-header{
-    display:flex;
-    align-items:center;
-    gap:18px;
-    margin-bottom:18px;
-    flex-wrap:wrap;
+.designer{
+  background:white;
+  border-radius:20px;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-bottom:20px;
 }
 
-.number{
-    width:42px;
-    height:42px;
-    border-radius:50%;
-    background:#222;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
+.header{
+  display:flex;
+  gap:18px;
+  flex-wrap:wrap;
 }
 
-.section-title{
-    font-size:28px;
-    font-weight:bold;
+.designer-photo{
+  width:120px;
+  aspect-ratio:3/4;
+  border-radius:14px;
+  overflow:hidden;
+  flex-shrink:0;
 }
 
-.price{
-    background:white;
-    padding:10px 18px;
-    border-radius:14px;
-    font-weight:bold;
+.designer-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
-.section-subtitle{
-    color:#666;
-    margin-bottom:25px;
+.header-info{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  flex:1;
 }
 
-/* ===== СЛАЙДЕР ===== */
-
-.gallery{
-    width:100%;
+.title-line{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
 }
 
-.main-slider{
-    position:relative;
-    height:550px;
-    border-radius:22px;
-    overflow:hidden;
-    background:#ccc;
+.title-line h3{
+  margin:0;
 }
 
-.main-slider img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+.city{
+  background:#6d35ff;
+  color:white;
+  padding:5px 12px;
+  border-radius:12px;
+  font-size:12px;
+  font-weight:bold;
 }
 
-.arrow{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    width:52px;
-    height:52px;
-    border:none;
-    border-radius:50%;
-    background:rgba(0,0,0,0.55);
-    color:white;
-    font-size:24px;
-    cursor:pointer;
-    z-index:10;
+.tags-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
 }
 
-.arrow-left{
-    left:18px;
+.tag{
+  padding:6px 12px;
+  border-radius:12px;
+  font-size:12px;
+  color:white;
+  white-space:nowrap;
 }
 
-.arrow-right{
-    right:18px;
+.tag-green{
+  background:#00b578;
 }
 
-.thumbnails{
-    margin-top:18px;
-    display:flex;
-    gap:10px;
-    overflow-x:auto;
+.tag-blue{
+  background:#132e7c;
 }
 
-.thumb{
-    width:110px;
-    height:80px;
-    border-radius:12px;
-    overflow:hidden;
-    cursor:pointer;
-    border:3px solid transparent;
-    flex-shrink:0;
+.tag-orange{
+  background:#ff7b22;
 }
 
-.thumb.active{
-    border-color:#222;
+.calc-row{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
 }
 
-.thumb img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+.service-line{
+  display:flex;
+  justify-content:flex-start;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
 }
 
-/* ===== ДОКУМЕНТАЦИЯ ===== */
+.rate{
+  font-size:13px;
+  font-weight:bold;
+}
 
-.docs-list{
-    display:flex;
+.amount-box{
+  background:#d6d6d6;
+  padding:8px 12px;
+  border-radius:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:13px;
+}
+
+.amount-box-disabled{
+  background:#FFAFC1;
+  color:#7a2f4b;
+}
+
+/* Кликабельный фрейм */
+.amount-box-clickable{
+  cursor:pointer;
+  transition: background 0.15s;
+  user-select: none;
+}
+
+.amount-box-clickable:hover{
+  background:#c8c8c8;
+}
+
+.amount-box-clickable.active{
+  background:#b8b8b8;
+  border-radius:10px 10px 0 0;
+}
+
+/* Иконка-стрелка */
+.amount-box-clickable .toggle-icon{
+  font-size:11px;
+  color:#555;
+  margin-left:6px;
+  transition: transform 0.2s;
+  display:inline-block;
+}
+
+.amount-box-clickable.active .toggle-icon{
+  transform: rotate(180deg);
+}
+
+/* Карусель */
+.carousel-wrap{
+  display:none;
+  background:#c4c4c4;
+  border-radius:0 0 10px 10px;
+  padding:10px;
+  overflow:hidden;
+}
+
+.carousel-wrap.open{
+  display:block;
+}
+
+.carousel{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  padding-bottom:4px;
+}
+
+.carousel::-webkit-scrollbar{
+  height:4px;
+}
+
+.carousel::-webkit-scrollbar-track{
+  background:#b0b0b0;
+  border-radius:2px;
+}
+
+.carousel::-webkit-scrollbar-thumb{
+  background:#888;
+  border-radius:2px;
+}
+
+.carousel-item{
+  flex:0 0 auto;
+  width:160px;
+  height:110px;
+  border-radius:8px;
+  overflow:hidden;
+  scroll-snap-align:start;
+  background:#aaa;
+}
+
+.carousel-item img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.total{
+  margin-top:10px;
+  font-weight:bold;
+  font-size:22px;
+}
+
+.supervision-badge{
+  margin-top:10px;
+  display:inline-block;
+  background:#00aaff;
+  color:white;
+  padding:8px 14px;
+  border-radius:10px;
+  font-size:14px;
+  font-weight:normal;
+}
+
+.contact-btn{
+  margin-top:10px;
+  background:#00aaff;
+  padding:12px 18px;
+  border-radius:12px;
+  color:white;
+  border:none;
+  cursor:pointer;
+  font-size:14px;
+}
+
+.small-input{
+  width:60px;
+}
+
+@media (max-width:768px){
+
+  .header{
     flex-direction:column;
-    gap:18px;
-}
+  }
 
-.doc-item{
-    background:white;
-    border-radius:18px;
-    padding:18px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-    flex-wrap:wrap;
-}
-
-.doc-left{
-    display:flex;
-    align-items:center;
-    gap:16px;
-}
-
-.arrow-icon{
-    font-size:24px;
-}
-
-.doc-preview{
-    width:120px;
-    height:80px;
-    border-radius:12px;
-    overflow:hidden;
-    cursor:pointer;
-}
-
-.doc-preview img{
+  .designer-photo{
     width:100%;
-    height:100%;
-    object-fit:cover;
-}
+    max-width:220px;
+  }
 
-.modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.85);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    z-index:999;
-}
+  .carousel-item{
+    width:130px;
+    height:90px;
+  }
 
-.modal img{
-    max-width:90%;
-    max-height:90%;
-    border-radius:20px;
-}
-
-.modal.active{
-    display:flex;
-}
-
-/* ===== ДОП УСЛУГИ ===== */
-
-.service-item{
-    background:white;
-    border-radius:18px;
-    padding:18px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:16px;
-    flex-wrap:wrap;
-    gap:20px;
-}
-
-.service-left{
-    display:flex;
-    align-items:center;
-    gap:14px;
-}
-
-.mini-price{
-    background:#ececec;
-    padding:10px 16px;
-    border-radius:12px;
-    font-weight:bold;
-}
-
-.file-btn{
-    padding:12px 18px;
-    border:none;
-    border-radius:12px;
-    background:#222;
-    color:white;
-    cursor:pointer;
-}
-
-/* ===== ОТЗЫВЫ ===== */
-
-.review{
-    background:white;
-    border-radius:18px;
-    padding:25px;
-    margin-top:20px;
-}
-
-.review-top{
-    display:flex;
-    gap:14px;
-    align-items:center;
-    margin-bottom:14px;
-    flex-wrap:wrap;
-}
-
-.stars{
-    color:orange;
-}
-
-.review-date{
-    color:#777;
-}
-
-/* ===== БЛОК ДИЗАЙНЕРА ===== */
-
-.designer {
-  background: #efefef;
-  border-radius: 28px;
-  padding: 35px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 40px;
-}
-
-.header {
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.designer-photo {
-  width: 180px;
-  aspect-ratio: 3/4;
-  border-radius: 18px;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.designer-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.header-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 8px;
-}
-
-.city {
-  display: inline-block;
-  background: purple;
-  color: white;
-  padding: 6px 12px;
-  border-radius: 10px;
-  font-size: 13px;
-  width: fit-content;
-}
-
-.tags {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 10px;
-}
-
-.tags span {
-  display: inline-block;
-  background: #00c27a;
-  padding: 8px 14px;
-  border-radius: 12px;
-  font-size: 14px;
-  width: fit-content;
 }
 
 </style>
 </head>
+
 <body>
 
-<div class="container">
+<div class="card">
 
-<!-- ===== БЛОК ДИЗАЙНЕРА ===== -->
+<h2>
 
-<div class="designer">
+Калькулятор проекта
 
-    <div class="header">
+<button class="btn" onclick="generateShareLink()">
+Поделиться
+</button>
 
-        <div class="designer-photo">
-            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400">
-        </div>
+</h2>
 
-        <div class="header-info">
+<div class="row">
 
-            <h2>
-                Полина 0001758
-            </h2>
+<label>Город:</label>
 
-            <span class="city">УФА</span>
+<select id="city">
+<option>Все города</option>
+<option>Москва</option>
+<option>МО</option>
+<option>Ставрополь</option>
+<option>Ростов-на-Дону</option>
+<option>Батайск</option>
+<option>Санкт-Петербург</option>
+<option>Волгоград</option>
+<option>Краснодар</option>
+<option>Уфа</option>
+<option>Воронеж</option>
+<option>Красноярск</option>
+<option>Омск</option>
+<option>Грозный</option>
+<option>Беларусь</option>
+</select>
 
-            <div class="tags">
-                <span>Может выехать на объект</span>
-                <span>Составляет ТЗ онлайн</span>
-                <span>Дом</span>
-                <span>Квартира</span>
-            </div>
+<label>Телефон:</label>
 
-        </div>
-
-    </div>
-
-</div>
-
-<div class="frame">
-
-<h1 class="title">Портфолио</h1>
-
-<div class="tabs">
-    <button class="tab-btn active" data-type="house">Дом</button>
-    <button class="tab-btn" data-type="flat">Квартира</button>
-    <button class="tab-btn" data-type="club">Коммерция</button>
-</div>
-
-<!-- ================== БЛОК 1 ================== -->
-
-<div class="divider"></div>
-
-<div class="section-header">
-    <div class="number">1</div>
-    <div class="section-title">3D-визуализации</div>
-    <div class="price">700 ₽/м²</div>
-</div>
-
-<div class="section-subtitle">
-    Фотореалистичные картинки вашего интерьера
-</div>
-
-<div class="gallery">
-
-    <div class="main-slider">
-        <button class="arrow arrow-left">❮</button>
-
-        <img id="mainImage" src="" alt="">
-
-        <button class="arrow arrow-right">❯</button>
-    </div>
-
-    <div class="thumbnails" id="thumbs"></div>
+<input
+class="input"
+id="phone"
+placeholder="+79001234567"
+/>
 
 </div>
 
-<!-- ================== БЛОК 2 ================== -->
+<div class="row">
 
-<div class="divider"></div>
+<label>Расположение:</label>
 
-<div class="section-header">
-    <div class="number">2</div>
-    <div class="section-title">Техническая документация</div>
-    <div class="price">700 ₽/м²</div>
-</div>
+<select id="placement">
+<option value="1">В черте города</option>
+<option value="1.2">За городом</option>
+</select>
 
-<div class="section-subtitle">
-    чертежи для ваших строителей
-</div>
+<label>Тип:</label>
 
-<div class="docs-list" id="docsList"></div>
-
-<!-- ================== БЛОК 3 ================== -->
-
-<div class="divider"></div>
-
-<div class="section-header">
-    <div class="number">3</div>
-    <div class="section-title">2D-коллажи</div>
-    <div class="price">1500 ₽/ракурс</div>
-</div>
-
-<div class="section-subtitle">
-    Бюджетная альтернатива визуализациям
-</div>
-
-<div class="gallery">
-
-    <div class="main-slider">
-        <button class="arrow arrow-left collage-left">❮</button>
-
-        <img id="collageMain" src="" alt="">
-
-        <button class="arrow arrow-right collage-right">❯</button>
-    </div>
-
-    <div class="thumbnails" id="collageThumbs"></div>
+<select id="type">
+<option>Не важно</option>
+<option>Дом</option>
+<option>Квартира</option>
+<option>Коммерция</option>
+</select>
 
 </div>
 
-<!-- ================== БЛОК 4 ================== -->
+<h3>Наполнение:</h3>
 
-<div class="divider"></div>
-
-<div class="section-header">
-    <div class="number">4</div>
-    <div class="section-title">Доп.услуги</div>
+<div class="service">
+<input type="checkbox" id="measure" checked>
+<label>Выезд для обмерного плана</label>
+<input class="input" type="number" value="62" id="area1">
+<span class="unit">кв.м</span>
 </div>
 
-<div class="service-item">
-    <div class="service-left">
-        ➜
-        <div>Обмерный план</div>
-    </div>
-
-    <div class="mini-price">100₽/м²</div>
-
-    <div class="doc-preview">
-        <img src="https://picsum.photos/400/300?random=101">
-    </div>
+<div class="service">
+<input type="checkbox" id="docs" checked>
+<label>Техническая документация</label>
+<input class="input" type="number" value="62" id="area2">
+<span class="unit">кв.м</span>
 </div>
 
-<div class="service-item">
-    <div class="service-left">
-        ➜
-        <div>Таблица комплектации</div>
-    </div>
-
-    <div class="mini-price">100₽/м²</div>
-
-    <button class="file-btn">
-        📄 Скачать Excel
-    </button>
+<div class="service">
+<input type="checkbox" id="visual" checked>
+<label>3D-визуализация</label>
+<input class="input" type="number" value="62" id="area3">
+<span class="unit">кв.м</span>
 </div>
 
-<div class="service-item">
-    <div class="service-left">
-        ➜
-        <div>Авторский надзор</div>
-    </div>
+<div class="service">
+<input type="checkbox" id="table">
+<label>Таблица комплектации</label>
+<input class="input" type="number" value="50" id="areaTable">
+<span class="unit">кв.м</span>
+</div>
 
-    <div class="mini-price">5000₽/выезд</div>
+<div class="service">
+
+<input type="checkbox" id="collage">
+
+<label>2D-коллажи</label>
+
+<input
+class="input small-input"
+type="number"
+value="3"
+id="collageCount"
+>
+
+<span class="unit">ракурсов</span>
+
+<input
+class="input small-input"
+type="number"
+value="62"
+id="collageArea"
+>
+
+<span class="unit">кв.м</span>
+
+</div>
+
+<div class="service">
+<input type="checkbox" id="supervision">
+<label>Авторский надзор</label>
 </div>
 
 </div>
 
-<!-- ================== ОТЗЫВЫ ================== -->
+<div class="card">
 
-<div class="frame">
+<div class="row">
 
-<h2 class="title">Отзывы</h2>
+<label>Бюджет от:</label>
+<input class="input" id="budgetMin" value="10000">
 
-<div class="review">
-    <div class="review-top">
-        <strong>Арина</strong>
-        <div class="stars">★★★★★</div>
-        <div class="review-date">13.05.2026</div>
-    </div>
-
-    <div>
-        Все прошло просто замечательно. План сделали быстрее изначальных сроков, общение со всеми было легким и приятным. Если бы эта компания еще занималась ремонтом, то никто бы не жаловался, что ремонт это сложно😁😁🫱🏼‍🫲🏾🫶🏾👍🏻
-    </div>
-</div>
-
-<div class="review">
-    <div class="review-top">
-        <strong>Максим</strong>
-        <div class="stars">★★★★☆</div>
-        <div class="review-date">20.02.2020</div>
-    </div>
-
-    <div>
-        Спасибо девочкам , все сделали быстро и так как хотела видеть кухню .
-        10000% советую
-    </div>
-</div>
+<label>до:</label>
+<input class="input" id="budgetMax" value="900000">
 
 </div>
 
+<div class="row">
+
+<label>Сортировать:</label>
+
+<select id="sort">
+<option value="desc">Сначала дороже</option>
+<option value="asc" selected>Сначала дешевле</option>
+</select>
+
 </div>
 
-<!-- MODAL -->
+<button class="btn" onclick="calculate()">
+Подобрать дизайнера
+</button>
 
-<div class="modal" id="modal">
-    <img id="modalImage" src="">
+<div style="height:20px;"></div>
+
+<div id="results"></div>
+
 </div>
 
 <script>
 
-const imageSets = {
+const fields = [
+"city",
+"phone",
+"placement",
+"type",
+"area1",
+"area2",
+"area3",
+"areaTable",
+"collageCount",
+"collageArea",
+"budgetMin",
+"budgetMax",
+"sort",
+"measure",
+"docs",
+"visual",
+"table",
+"collage",
+"supervision"
+];
 
-    house: {
-        visuals: Array.from({length:10}, (_,i)=>
-            `https://picsum.photos/1200/700?random=${i+1}`
-        ),
+/* =============================================
+   ФОТОГРАФИИ ДЛЯ КАРУСЕЛЕЙ
+   Ключ: id дизайнера → услуга → массив из 5 URL
+   Замените URL на реальные фотографии работ.
+   ============================================= */
+const portfolioPhotos = {
 
-        collages: Array.from({length:10}, (_,i)=>
-            `https://picsum.photos/1200/700?random=${i+100}`
-        ),
+  "52-00001": {
+    measure: [
+      "https://placehold.co/320x220/a0c4ff/333?text=Обмер+1",
+      "https://placehold.co/320x220/a0c4ff/333?text=Обмер+2",
+      "https://placehold.co/320x220/a0c4ff/333?text=Обмер+3",
+      "https://placehold.co/320x220/a0c4ff/333?text=Обмер+4",
+      "https://placehold.co/320x220/a0c4ff/333?text=Обмер+5"
+    ],
+    docs: [
+      "https://placehold.co/320x220/b9fbc0/333?text=Документация+1",
+      "https://placehold.co/320x220/b9fbc0/333?text=Документация+2",
+      "https://placehold.co/320x220/b9fbc0/333?text=Документация+3",
+      "https://placehold.co/320x220/b9fbc0/333?text=Документация+4",
+      "https://placehold.co/320x220/b9fbc0/333?text=Документация+5"
+    ],
+    visual: [
+      "https://placehold.co/320x220/ffd6a5/333?text=3D-виз+1",
+      "https://placehold.co/320x220/ffd6a5/333?text=3D-виз+2",
+      "https://placehold.co/320x220/ffd6a5/333?text=3D-виз+3",
+      "https://placehold.co/320x220/ffd6a5/333?text=3D-виз+4",
+      "https://placehold.co/320x220/ffd6a5/333?text=3D-виз+5"
+    ],
+    table: [
+      "https://placehold.co/320x220/ffafcc/333?text=Таблица+1",
+      "https://placehold.co/320x220/ffafcc/333?text=Таблица+2",
+      "https://placehold.co/320x220/ffafcc/333?text=Таблица+3",
+      "https://placehold.co/320x220/ffafcc/333?text=Таблица+4",
+      "https://placehold.co/320x220/ffafcc/333?text=Таблица+5"
+    ],
+    collage: [
+      "https://placehold.co/320x220/cdb4db/333?text=Коллаж+1",
+      "https://placehold.co/320x220/cdb4db/333?text=Коллаж+2",
+      "https://placehold.co/320x220/cdb4db/333?text=Коллаж+3",
+      "https://placehold.co/320x220/cdb4db/333?text=Коллаж+4",
+      "https://placehold.co/320x220/cdb4db/333?text=Коллаж+5"
+    ]
+  },
 
-        docs: [
-            "План демонтажа",
-            "План перегородок",
-            "План помещений",
-            "План радиаторов"
-        ]
-    },
-
-    flat: {
-        visuals: Array.from({length:10}, (_,i)=>
-            `https://picsum.photos/1200/700?random=${i+20}`
-        ),
-
-        collages: Array.from({length:10}, (_,i)=>
-            `https://picsum.photos/1200/700?random=${i+200}`
-        ),
-
-        docs: [
-            "План демонтажа",
-            "План перегородок",
-            "План помещений",
-            "План радиаторов"
-        ]
-    },
-
-    club: {
-        visuals: Array.from({length:10}, (_,i)=>
-            `https://picsum.photos/1200/700?random=${i+50}`
-        ),
-
-        collages: Array.from({length:10}, (_,i)=>
-            `https://picsum.photos/1200/700?random=${i+300}`
-        ),
-
-        docs: [
-            "План демонтажа",
-            "План перегородок",
-            "План помещений",
-            "План радиаторов"
-        ]
-    }
+  "52-00016": {
+    measure: [
+      "https://placehold.co/320x220/caffbf/333?text=Обмер+1",
+      "https://placehold.co/320x220/caffbf/333?text=Обмер+2",
+      "https://placehold.co/320x220/caffbf/333?text=Обмер+3",
+      "https://placehold.co/320x220/caffbf/333?text=Обмер+4",
+      "https://placehold.co/320x220/caffbf/333?text=Обмер+5"
+    ],
+    docs: [
+      "https://placehold.co/320x220/fdffb6/333?text=Документация+1",
+      "https://placehold.co/320x220/fdffb6/333?text=Документация+2",
+      "https://placehold.co/320x220/fdffb6/333?text=Документация+3",
+      "https://placehold.co/320x220/fdffb6/333?text=Документация+4",
+      "https://placehold.co/320x220/fdffb6/333?text=Документация+5"
+    ],
+    visual: [
+      "https://placehold.co/320x220/ffc8dd/333?text=3D-виз+1",
+      "https://placehold.co/320x220/ffc8dd/333?text=3D-виз+2",
+      "https://placehold.co/320x220/ffc8dd/333?text=3D-виз+3",
+      "https://placehold.co/320x220/ffc8dd/333?text=3D-виз+4",
+      "https://placehold.co/320x220/ffc8dd/333?text=3D-виз+5"
+    ],
+    table: [
+      "https://placehold.co/320x220/bde0fe/333?text=Таблица+1",
+      "https://placehold.co/320x220/bde0fe/333?text=Таблица+2",
+      "https://placehold.co/320x220/bde0fe/333?text=Таблица+3",
+      "https://placehold.co/320x220/bde0fe/333?text=Таблица+4",
+      "https://placehold.co/320x220/bde0fe/333?text=Таблица+5"
+    ],
+    collage: [
+      "https://placehold.co/320x220/e8d5b7/333?text=Коллаж+1",
+      "https://placehold.co/320x220/e8d5b7/333?text=Коллаж+2",
+      "https://placehold.co/320x220/e8d5b7/333?text=Коллаж+3",
+      "https://placehold.co/320x220/e8d5b7/333?text=Коллаж+4",
+      "https://placehold.co/320x220/e8d5b7/333?text=Коллаж+5"
+    ]
+  }
 
 };
 
-let currentType = "house";
+/* Генерация HTML карусели */
+function buildCarousel(designerId, serviceKey){
 
-let currentVisual = 0;
-let currentCollage = 0;
+  const photos = portfolioPhotos[designerId]?.[serviceKey];
 
-const mainImage = document.getElementById("mainImage");
-const thumbs = document.getElementById("thumbs");
+  if(!photos || photos.length === 0) return "";
 
-const collageMain = document.getElementById("collageMain");
-const collageThumbs = document.getElementById("collageThumbs");
+  const items = photos.map(url =>
+    `
+    <div class="carousel-item">
+      <img
+        src="${url}"
+        loading="lazy"
+        onclick="openImageModal('${url}')"
+      >
+    </div>
+    `
+  ).join("");
 
-function renderVisuals(){
-
-    const images = imageSets[currentType].visuals;
-
-    mainImage.src = images[currentVisual];
-
-    thumbs.innerHTML = "";
-
-    images.forEach((img, index)=>{
-
-        const div = document.createElement("div");
-        div.className = "thumb";
-
-        if(index === currentVisual){
-            div.classList.add("active");
-        }
-
-        div.innerHTML = `<img src="${img}">`;
-
-        div.onclick = ()=>{
-            currentVisual = index;
-            renderVisuals();
-        };
-
-        thumbs.appendChild(div);
-
-    });
+  return `
+  <div class="carousel-wrap">
+    <div class="carousel">
+      ${items}
+    </div>
+  </div>
+  `;
 
 }
 
-function renderCollages(){
+/* Переключение карусели */
+function toggleCarousel(boxEl){
 
-    const images = imageSets[currentType].collages;
+  const wrap = boxEl.nextElementSibling;
 
-    collageMain.src = images[currentCollage];
+  if(!wrap || !wrap.classList.contains("carousel-wrap")) return;
 
-    collageThumbs.innerHTML = "";
+  const isOpen = wrap.classList.contains("open");
 
-    images.forEach((img, index)=>{
-
-        const div = document.createElement("div");
-        div.className = "thumb";
-
-        if(index === currentCollage){
-            div.classList.add("active");
-        }
-
-        div.innerHTML = `<img src="${img}">`;
-
-        div.onclick = ()=>{
-            currentCollage = index;
-            renderCollages();
-        };
-
-        collageThumbs.appendChild(div);
-
-    });
+  wrap.classList.toggle("open", !isOpen);
+  boxEl.classList.toggle("active", !isOpen);
 
 }
 
-document.querySelector(".arrow-left").onclick = ()=>{
-    const images = imageSets[currentType].visuals;
+const designersData = [
 
-    currentVisual--;
+{
+name:"Гринева Лада",
+id:"52-00001",
+city:"Ставрополь, Ростов-на-Дону, Батайск",
+photo:"https://raw.githubusercontent.com/ikushko-designer/designer-photos/refs/heads/main/52-00001.jpeg",
+feature1:"Работаю только онлайн",
+feature2:["Могу выехать на замер","Работаю по договору"],
+objects:["Дом","Квартира","Коммерция"],
+minArea:"От 35 кв.м",
+minBudget:"От 18 000 руб",
+rates:{
+measure:500,
+docs:800,
+visual:550,
+table:450,
+collageType:"m2",
+collage:0,
+supervision:0
+}
+},
 
-    if(currentVisual < 0){
-        currentVisual = images.length - 1;
-    }
-
-    renderVisuals();
-};
-
-document.querySelector(".arrow-right").onclick = ()=>{
-    const images = imageSets[currentType].visuals;
-
-    currentVisual++;
-
-    if(currentVisual >= images.length){
-        currentVisual = 0;
-    }
-
-    renderVisuals();
-};
-
-document.querySelector(".collage-left").onclick = ()=>{
-    const images = imageSets[currentType].collages;
-
-    currentCollage--;
-
-    if(currentCollage < 0){
-        currentCollage = images.length - 1;
-    }
-
-    renderCollages();
-};
-
-document.querySelector(".collage-right").onclick = ()=>{
-    const images = imageSets[currentType].collages;
-
-    currentCollage++;
-
-    if(currentCollage >= images.length){
-        currentCollage = 0;
-    }
-
-    renderCollages();
-};
-
-function renderDocs(){
-
-    const docsList = document.getElementById("docsList");
-
-    docsList.innerHTML = "";
-
-    imageSets[currentType].docs.forEach((doc, index)=>{
-
-        const image =
-        `https://picsum.photos/500/350?random=${index+400}`;
-
-        const item = document.createElement("div");
-
-        item.className = "doc-item";
-
-        item.innerHTML = `
-            <div class="doc-left">
-                <div class="arrow-icon">➜</div>
-                <div>${doc}</div>
-            </div>
-
-            <div class="doc-preview">
-                <img src="${image}">
-            </div>
-        `;
-
-        item.querySelector("img").onclick = ()=>{
-            openModal(image);
-        };
-
-        docsList.appendChild(item);
-
-    });
-
+{
+name:"Игорь Кушко",
+id:"52-00016",
+city:"Москва",
+photo:"https://raw.githubusercontent.com/ikushko-designer/designer-photos/refs/heads/main/52-00016.jpg",
+feature1:"Работаю только онлайн",
+feature2:["Есть свой замерщик","Работаю по договору"],
+objects:["Дом","Квартира"],
+minArea:"От 10 кв.м",
+minBudget:"От 5000 руб",
+rates:{
+measure:110,
+docs:580,
+visual:800,
+table:250,
+collageType:"view",
+collage:3000,
+supervision:0
+}
 }
 
-document.querySelectorAll(".tab-btn").forEach(btn=>{
+];
 
-    btn.onclick = ()=>{
+window.onload = function(){
 
-        document.querySelectorAll(".tab-btn")
-            .forEach(b=>b.classList.remove("active"));
+const params = new URLSearchParams(window.location.search);
 
-        btn.classList.add("active");
+fields.forEach(id=>{
 
-        currentType = btn.dataset.type;
+const el = document.getElementById(id);
 
-        currentVisual = 0;
-        currentCollage = 0;
+if(!el) return;
 
-        renderVisuals();
-        renderCollages();
-        renderDocs();
+const value = params.get(id);
 
-    };
+if(value !== null){
+
+if(el.type === "checkbox"){
+el.checked = value === "true";
+}else{
+el.value = value;
+}
+
+}
 
 });
 
-const modal = document.getElementById("modal");
-const modalImage = document.getElementById("modalImage");
+calculate();
 
-function openModal(src){
+};
 
-    modal.classList.add("active");
-    modalImage.src = src;
+function generateShareLink(){
+
+const params = new URLSearchParams();
+
+fields.forEach(id=>{
+
+const el = document.getElementById(id);
+
+if(!el) return;
+
+if(el.type === "checkbox"){
+params.set(id, el.checked);
+}else{
+params.set(id, el.value);
+}
+
+});
+
+const url =
+window.location.origin +
+window.location.pathname +
+"?" +
+params.toString();
+
+navigator.clipboard.writeText(url);
+
+alert("Ссылка скопирована!");
 
 }
 
-modal.onclick = ()=>{
-    modal.classList.remove("active");
-};
+function calculate(){
 
-renderVisuals();
-renderCollages();
-renderDocs();
+const placement =
+parseFloat(document.getElementById("placement").value);
 
+const placementText =
+document.getElementById("placement").options[
+document.getElementById("placement").selectedIndex
+].text;
+
+const selectedCity =
+document.getElementById("city").value;
+
+const phone =
+document.getElementById("phone").value;
+
+const type =
+document.getElementById("type").value;
+
+const budgetMin =
+parseFloat(document.getElementById("budgetMin").value) || 0;
+
+const budgetMax =
+parseFloat(document.getElementById("budgetMax").value) || Infinity;
+
+const sortOrder =
+document.getElementById("sort").value;
+
+const results = [];
+
+designersData.forEach(designer=>{
+
+if(
+selectedCity !== "Все города" &&
+!designer.city.includes(selectedCity)
+){
+return;
+}
+
+if(
+type !== "Не важно" &&
+!designer.objects.includes(type)
+){
+return;
+}
+
+let total = 0;
+let hasUnavailableService = false;
+
+/* Строит фрейм + карусель под ним */
+function getServiceBox(serviceName, serviceKey, rate, quantityText, value){
+
+const isUnavailable = rate === 0;
+
+if(!isUnavailable){
+total += value;
+}else{
+hasUnavailableService = true;
+}
+
+/* Для недоступных — обычный фрейм без карусели */
+if(isUnavailable){
+return `
+<div class="calc-row">
+<div class="service-line">
+<span>${serviceName}</span>
+<span class="rate">Не оказывается</span>
+</div>
+<div class="amount-box amount-box-disabled">
+<span>${quantityText}</span>
+<span>не оказывается</span>
+</div>
+</div>
+`;
+}
+
+const carousel = buildCarousel(designer.id, serviceKey);
+
+return `
+<div class="calc-row">
+<div class="service-line">
+<span>${serviceName}</span>
+<span class="rate">${rate} ₽/м²</span>
+</div>
+<div class="amount-box amount-box-clickable ${serviceKey === "visual" ? "active" : ""}" onclick="toggleCarousel(this)">
+<span>${quantityText}</span>
+<span>${Math.round(value)} ₽ <span class="toggle-icon">▼</span></span>
+</div>
+${carousel}
+</div>
+`;
+
+}
+
+let servicesHtml = "";
+
+if(measure.checked){
+
+servicesHtml += getServiceBox(
+"Обмер",
+"measure",
+designer.rates.measure,
+`${area1.value} кв.м`,
+area1.value * designer.rates.measure * placement
+);
+
+}
+
+if(docs.checked){
+
+servicesHtml += getServiceBox(
+"Документация",
+"docs",
+designer.rates.docs,
+`${area2.value} кв.м`,
+area2.value * designer.rates.docs * placement
+);
+
+}
+
+if(visual.checked){
+
+servicesHtml += getServiceBox(
+"3D-визуализация",
+"visual",
+designer.rates.visual,
+`${area3.value} кв.м`,
+area3.value * designer.rates.visual * placement
+);
+
+}
+
+if(table.checked){
+
+servicesHtml += getServiceBox(
+"Таблица комплектации",
+"table",
+designer.rates.table,
+`${areaTable.value} кв.м`,
+areaTable.value * designer.rates.table
+);
+
+}
+
+if(collage.checked){
+
+const collageValue =
+designer.rates.collageType === "m2"
+? collageArea.value * designer.rates.collage
+: collageCount.value * designer.rates.collage;
+
+const collageQuantity =
+designer.rates.collageType === "m2"
+? `${collageArea.value} кв.м`
+: `${collageCount.value} ракурсов`;
+
+const collageRate =
+designer.rates.collageType === "m2"
+? designer.rates.collage + " ₽/м²"
+: designer.rates.collage + " ₽/ракурс";
+
+const isUnavailable = designer.rates.collage === 0;
+
+if(!isUnavailable){
+total += collageValue;
+}else{
+hasUnavailableService = true;
+}
+
+if(isUnavailable){
+
+servicesHtml += `
+<div class="calc-row">
+<div class="service-line">
+<span>2D-коллажи</span>
+<span class="rate">Не оказывается</span>
+</div>
+<div class="amount-box amount-box-disabled">
+<span>${collageQuantity}</span>
+<span>не оказывается</span>
+</div>
+</div>
+`;
+
+}else{
+
+const carousel = buildCarousel(designer.id, "collage");
+
+servicesHtml += `
+<div class="calc-row">
+<div class="service-line">
+<span>2D-коллажи</span>
+<span class="rate">${collageRate}</span>
+</div>
+<div class="amount-box amount-box-clickable" onclick="toggleCarousel(this)">
+<span>${collageQuantity}</span>
+<span>${Math.round(collageValue)} ₽ <span class="toggle-icon">▼</span></span>
+</div>
+${carousel}
+</div>
+`;
+
+}
+
+}
+
+let supervisionValue = 0;
+
+if(supervision.checked){
+
+const isUnavailable = designer.rates.supervision === 0;
+
+if(!isUnavailable){
+supervisionValue = designer.rates.supervision;
+}else{
+hasUnavailableService = true;
+}
+
+servicesHtml += `
+<div class="calc-row">
+
+<div class="service-line">
+<span>Авторский надзор</span>
+<span class="rate">
+${isUnavailable ? "Не оказывается" : designer.rates.supervision + " ₽/мес."}
+</span>
+</div>
+
+<div class="amount-box ${isUnavailable ? "amount-box-disabled" : ""}">
+<span>1 месяц</span>
+<span>
+${isUnavailable ? "не оказывается" : designer.rates.supervision + " ₽"}
+</span>
+</div>
+
+</div>
+`;
+
+}
+
+if(total < budgetMin || total > budgetMax){
+return;
+}
+
+const servicesText = [];
+
+const designerFeatures = [
+designer.feature1,
+...designer.feature2
+].join(", ");
+
+const designerObjects =
+designer.objects.join(", ");
+
+function addServiceLine(
+serviceName,
+rate,
+area,
+value,
+unit = "м²"
+){
+
+if(rate === 0){
+
+servicesText.push(
+`${serviceName}=услуга не оказывается`
+);
+
+return;
+
+}
+
+servicesText.push(
+`${serviceName}=(${rate}₽/${unit})*${area}${unit === "ракурс" ? " ракурсов" : "кв.м"}=${Math.round(value)}₽`
+);
+
+}
+
+if(measure.checked){
+
+const value =
+area1.value * designer.rates.measure * placement;
+
+addServiceLine(
+"Обмер",
+designer.rates.measure,
+area1.value,
+value
+);
+
+}
+
+if(docs.checked){
+
+const value =
+area2.value * designer.rates.docs * placement;
+
+addServiceLine(
+"Документация",
+designer.rates.docs,
+area2.value,
+value
+);
+
+}
+
+if(visual.checked){
+
+const value =
+area3.value * designer.rates.visual * placement;
+
+addServiceLine(
+"3D-визуализация",
+designer.rates.visual,
+area3.value,
+value
+);
+
+}
+
+if(table.checked){
+
+const value =
+areaTable.value * designer.rates.table;
+
+addServiceLine(
+"Таблица комплектации",
+designer.rates.table,
+areaTable.value,
+value
+);
+
+}
+
+if(collage.checked){
+
+const collageValue =
+designer.rates.collageType === "m2"
+? collageArea.value * designer.rates.collage
+: collageCount.value * designer.rates.collage;
+
+if(designer.rates.collage === 0){
+
+servicesText.push(
+`2D-коллажи=услуга не оказывается`
+);
+
+}else{
+
+if(designer.rates.collageType === "m2"){
+
+servicesText.push(
+`2D-коллажи=(${designer.rates.collage}₽/м²)*${collageArea.value}кв.м=${Math.round(collageValue)}₽`
+);
+
+}else{
+
+servicesText.push(
+`2D-коллажи=(${designer.rates.collage}₽/ракурс)*${collageCount.value} ракурсов=${Math.round(collageValue)}₽`
+);
+
+}
+
+}
+
+}
+
+if(supervision.checked){
+
+if(designer.rates.supervision === 0){
+
+servicesText.push(
+`Авторский надзор=услуга не оказывается`
+);
+
+}else{
+
+servicesText.push(
+`Авторский надзор=${designer.rates.supervision}₽/мес`
+);
+
+}
+
+}
+
+const telegramMessage =
+`Значения калькулятора:
+Город: ${selectedCity}
+Телефон: ${phone}
+Расположение: ${placementText}
+Тип: ${type}
+
+Карточка дизайнера №${designer.id}
+Имя: ${designer.name}
+Город: ${designer.city}
+Особенности: ${designerFeatures}
+Объекты: ${designerObjects}
+
+
+Расчет стоимости:
+${servicesText.join("\n")}
+
+Итого: ${Math.round(total)}₽${
+supervision.checked &&
+designer.rates.supervision > 0
+? ` [+ ${designer.rates.supervision}₽/мес авторский надзор]`
+: ""
+}`;
+
+
+
+const telegramUrl =
+"https://t.me/ikushko?text=" +
+encodeURIComponent(telegramMessage);
+
+const feature2Html =
+designer.feature2.map(item =>
+`<span class="tag tag-green">${item}</span>`
+).join("");
+
+const objectsHtml =
+designer.objects.map(item =>
+`<span class="tag tag-blue">${item}</span>`
+).join("");
+
+const html = `
+<div class="designer">
+
+<div class="header">
+
+<div class="designer-photo">
+<img src="${designer.photo}">
+</div>
+
+<div class="header-info">
+
+<div class="title-line">
+<h3>${designer.name} ${designer.id}</h3>
+<span class="city">${designer.city}</span>
+</div>
+
+<div class="tags-row">
+<span class="tag tag-green">${designer.feature1}</span>
+</div>
+
+<div class="tags-row">
+${feature2Html}
+</div>
+
+<div class="tags-row">
+${objectsHtml}
+</div>
+
+<div class="tags-row">
+<span class="tag tag-orange">${designer.minArea}</span>
+<span class="tag tag-orange">${designer.minBudget}</span>
+</div>
+
+</div>
+
+</div>
+
+<h4>Расчет стоимости:</h4>
+
+${servicesHtml}
+
+<div class="total">
+
+Итого: ${Math.round(total)} ₽
+
+${
+supervision.checked && supervisionValue > 0
+? `
+<div class="supervision-badge">
++ ${Math.round(supervisionValue)} ₽/мес
+</div>
+`
+: ""
+}
+
+</div>
+
+<div style="display:flex; gap:10px; flex-wrap:wrap;">
+
+<a href="${telegramUrl}" target="_blank">
+<button class="contact-btn">
+Telegram
+</button>
+</a>
+
+<a href="https://max.ru/u/f9LHodD0cOLwih9TXRbAmf8nJ6SzGEFpeNShCg9ahY-zZlbpJjzGzLRkTk8?text=${encodeURIComponent(telegramMessage)}" target="_blank">
+<button class="contact-btn">
+MAX
+</button>
+</a>
+
+</div>
+
+</div>
+`;
+
+results.push({
+html,
+total,
+hasUnavailableService
+});
+
+});
+
+results.sort((a,b)=>{
+
+if(a.hasUnavailableService !== b.hasUnavailableService){
+return a.hasUnavailableService ? 1 : -1;
+}
+
+return sortOrder === "asc"
+? a.total - b.total
+: b.total - a.total;
+
+});
+
+document.getElementById("results").innerHTML =
+
+results.length > 0
+
+? results.map(d=>d.html).join("")
+
+: "<p>Нет дизайнеров по выбранным параметрам</p>";
+
+}
+/* FULLSCREEN IMAGE */
+
+function openImageModal(src){
+
+  const modal =
+  document.getElementById("imageModal");
+
+  const image =
+  document.getElementById("modalImage");
+
+  image.src = src;
+
+  modal.classList.add("open");
+
+}
+
+function closeImageModal(){
+
+  document
+  .getElementById("imageModal")
+  .classList.remove("open");
+
+}
+
+/* закрытие по клику на фон */
+
+document.addEventListener("click", function(e){
+
+  const modal =
+  document.getElementById("imageModal");
+
+  if(e.target === modal){
+    closeImageModal();
+  }
+
+});
 </script>
+<!-- FULLSCREEN IMAGE MODAL -->
 
+<div class="image-modal" id="imageModal">
+
+  <div
+    class="image-modal-close"
+    onclick="closeImageModal()"
+  >
+    ×
+  </div>
+
+  <img id="modalImage">
+
+</div>
 </body>
 </html>
